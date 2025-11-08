@@ -1,0 +1,57 @@
+.fondo-portada{
+    color: black;
+     background-image:url('https://static.vecteezy.com/system/resources/previews/004/834/167/non_2x/frame-of-delicious-candies-decoration-free-vector.jpg');
+
+text-align: center;
+    background-position: center;
+}
+h1{
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:  220px;
+    margin: 50px;
+    font-weight: 600; /*grosor de la letra*/
+}
+
+
+
+.Ubicaciones{
+    margin: 34px;
+    font-size: 49px;
+    color: black;
+    font-weight: 35px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.boton{
+ 
+    color:rgba(179, 116, 21, 0.925);
+   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 49px;
+    font-weight: 330px;
+    margin-top: 150px;
+    margin-right: 20px;
+   
+}
+.icono-busqueda1{
+    text-align: center;
+    margin-top: 80px;
+  
+   
+   
+}
+.icono-busqueda{
+    font-size: 60px;
+    background-color: rgb(184, 171, 197);
+ 
+
+    
+}
+.tamaño_imagen img{
+
+
+width: 20%;
+height: auto;
+border-: 50%;
+
+}
