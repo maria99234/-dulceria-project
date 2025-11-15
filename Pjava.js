@@ -7,24 +7,39 @@ const marcas_dulces=["de la rosa","Ricolino",];
     Buscar_Producto();
     });
 
+function asignar_texto(elemento, texto){  //como parametros
+    //let parrafo =document.querySelector('#texto'); COMO ID, DE ALGO,
+//parrafo.innerHTML='se logro';
+//ELEMENTO=ID, TEXTO= PARAMETRO, CONTENIDO QUE QUIERO QUE TENGA
+
+//DESPUES LLAMAR A LA FUNICON, EJEMPLO: NOMBTE DE FUNCION( '#ID,H1,ETC','LO QUE QUIERO QUE MUESTRE')
+let elementoHTML=document.querySelector(elemento);
+elementoHTML.innerHTML=texto;
+}
+
+//asigniar a una funcion, con parametros,
+
 
 function Buscar_Producto(){
-    alert("has entrado a la funcion");
+    //alert("has entrado a la funcion");
    
 let Producto_del_usuario=document.getElementById("busqueda");
 
 for(let i=0; i< marcas_dulces.length; i++){ //menor que, porque es como si sumara 1, es decir, para que no tome una posicion que no existe
 if(Producto_del_usuario.value.toLowerCase().trim()==marcas_dulces[i].toLowerCase().trim()){ //alguno de nuestros elementos);trim para eliminar espacios
-       alert("tu producto ha sido encontrado!");
+       //alert("tu producto ha sido encontrado!");
+       asignar_texto('#texto',"el producto ha sido encontrado");
+   
     return;
  
 }
 if(Producto_del_usuario.value.toLowerCase().trim()!=marcas_dulces[i].toLowerCase().trim()){
+    asignar_texto('#texto',"el producto no ha sido encontrado");
 
-    alert("tu producto no ha sido encontrado");
+    //alert("tu producto no ha sido encontrado");
     
 }
-
+   
 }
 }
 
@@ -60,4 +75,4 @@ let fechas=new Date();
     //precio, 
     //mostrar dulces let mostrar=dulces.mostrar, console log(mostrar) ;
 //articulos con demasiada cantidad, fechas, 
-}/*
+//
