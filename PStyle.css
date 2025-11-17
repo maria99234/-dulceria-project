@@ -31,27 +31,20 @@ h1{
     font-weight: 330px;
     margin-top: 150px;
     margin-right: 20px;
+    background-color: blueviolet;
    
 }
-.icono-busqueda1{
-    text-align: center;
-    margin-top: 80px;
-  
-   
-   
-}
+
+
 .icono-busqueda{
     font-size: 60px;
-    background-color: rgb(184, 171, 197);
- 
-
-    
+    background-color: rgb(73, 45, 100);
+    text-align: center; 
 }
 .tamaño_imagen img{
-
-
 width: 20%;
 height: auto;
-border-: 50%;
-
+border-radius: 50%;
 }
+
+
