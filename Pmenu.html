@@ -16,35 +16,52 @@
         id="busqueda"
         placeholder="escribe aqui la marca"
       />
+      <button type="submit" onclick="Buscar_Producto()" id="buscar_Producto">
+        buscar
+      </button>
     </form>
-    <button onclick="Buscar_Producto();" id="buscar_Producto">buscar</button>
+
     <p id="texto"></p>
 
     <div class="tamaño_imagen">
       <div>
-        <h3>Panditas</h3>
+        <p class="diseño_texto">Panditas</p>
         <img
           src="https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00075752802634L.jpg"
           alt="imagenes de panditas"
         />
-        <p>costo: $</p>
+
+        <span class="Price"> 22</span>
       </div>
+
       <div>
-        <h4>M&MS</h4>
+        <span class="diseño_texto">M&M's</span>
         <img
           src="https://tse3.mm.bing.net/th/id/OIP.9Gv2CZqqEBD67bJiuq6jQQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
           alt="imagen,m&m's"
         />
-        <p>costo:$</p>
+
+        <span class="Price">30</span>
       </div>
+
       <div>
-        <h5>mazapan de la rosa</h5>
+        <span class="diseño_texto">Mazapan</span>
         <img
           src="https://www.mexicodesconocido.com.mx/wp-content/uploads/2022/02/mazapan.jpeg"
           alt="caja de mazapan"
         />
-        <p>costo:</p>
+        <span class="Price">50</span>
+      </div>
+      <div>
+        <span class="diseño_texto">Snickers, Mini</span>
+        <img
+          src="https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00750227191758L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF"
+          alt="mini Snickers"
+        />
+        <span class="Price">75</span>
       </div>
     </div>
+
+    <a class="boton" href="Pcarrito.html" onclick="total()"> MI CARRITO</a>
   </body>
 </html>
