@@ -1,5 +1,16 @@
 // PARA BUSCAR UN PRODUCTO: (por terminar)
-boton();
+let x= parseFloat (localStorage.getItem("x"))||0; //para guardar la cuenta, entre paginas, recupera el valor anterior,
+
+let suma=0;
+
+document.addEventListener("DOMContentLoaded", () => {
+    boton();
+
+
+
+    
+});
+
 const marcas_dulces=["de la rosa","Ricolino",];
 
  document.getElementById("formulario").addEventListener("submit", function(e){
@@ -43,12 +54,7 @@ if(Producto_del_usuario.value.toLowerCase().trim()!=marcas_dulces[i].toLowerCase
 //OFERTAS DE TEMPORADA:
 
 
-document.getElementById("funcion").addEventListener("click", function(e){
-        e.preventDefault(); //evitar que se recargue la pagina
-        //para confirmar lo que el usuario envia, addevenetlistnner: esperando a que el usuario haga algo como hacer click, enviar algo, escribir, etc;
-    FECHAS();
-    
-    });
+
 
    
 
@@ -61,13 +67,13 @@ const OFERTAS={  //objeto, el que guarda las ofertas,
 function FECHAS(){
     alert("has entrado a la funcion");
 
-
 let comparar_fecha=new Date(); //fecha de hoy
 let obtener_año= comparar_fecha.getFullYear();  //obtener el año de la fecha actual
 let inicio_oferta=new Date(obtener_año, 10, 15 ); 
 let limite_Oferta=new Date(obtener_año+1,0, 9);
 
 asignar_texto('#texto',"Ofertas disponibles para ti hoy," + comparar_fecha);
+
 
 if(comparar_fecha>=inicio_oferta && comparar_fecha <=limite_Oferta){
  
@@ -76,6 +82,7 @@ let aparecer_ofertas =document.getElementById("temporada_navideña"); //id del d
         aparecer_ofertas.style.display = "block";  //para que aparezcan las imagenes,
 
 }
+
 }
 
 function boton(){
@@ -84,8 +91,9 @@ function boton(){
     select_images.forEach(img => {
        let Boton= document.createElement("button"); //etiqueta que quiero crear en el html
      Boton.textContent="Agregar al Carrito"; 
-     Boton.addEventListener("click", Agregar_al_Carrito);
+     Boton.addEventListener("click", Agregar_al_Carrito); //al ser presionado pasa la iformacion
    img.insertAdjacentElement("afterend", Boton); //lugar en el que se va a mostrar el boton
+
 
    
     });
@@ -93,13 +101,39 @@ function boton(){
 }
 
 
-function Agregar_al_Carrito(){
 
-    //for(let i=0,i<p.length;i++){
-         //acomulador++,
-    //Monto=[acomulador]; //for
-    alert("Se ha  agregado");
+
+
+function Agregar_al_Carrito(event){ //pasa la informacion, cuando se dio click al boton
+
+let boton = event.target; // envent, =informacion del evento, accion en especifica,click
+//target, referencia al objeto;
+
+  // Buscar el precio dentro del mismo contenedor del producto, de su clase,
+  let precio = boton.parentElement.querySelector(".Price");
+  suma = parseInt (precio.textContent); //convierte a numero:
+  alert(`agregado al carrito, producto con precio de $: ${suma}`);
+
+
+     //let total_dinero= suma;
+      x+=suma;
+localStorage.setItem("x", x); //guarda los nuevos valores, 
 
     }
+
+    function total(){
+
+   
+    alert(`El total de tu compra es :$  ${x}`);
+            }
+        
+
+
+       
+    
+
+
+    
+
    
     
