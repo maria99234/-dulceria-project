@@ -1,43 +1,52 @@
-// PARA BUSCAR UN PRODUCTO: (por terminar)
+ 
+let Formulario;
+
+//Para asignar texto.
+function asignar_texto(elemento, texto){  //como parametros
+
+//EJEMPLO: NOMBTE DE FUNCION( '#ID,H1,ETC','LO QUE QUIERO QUE MUESTRE')
+let elementoHTML=document.querySelector(elemento); 
+elementoHTML.innerHTML=texto;
+}
+
 let x= parseFloat (localStorage.getItem("x"))||0; //para guardar la cuenta, entre paginas, recupera el valor anterior,
-
 let suma=0;
-
+  // convertir el array a texto:
+  let Mostrar_Productos=JSON.parse(localStorage.getItem("Mostrar_Productos")) || []; //combierte texto a un arreglo, con la variable mostraP
 document.addEventListener("DOMContentLoaded", () => {
     boton();
+ Formulario = document.getElementById("formulario")
 
-
+if(Formulario){
+Formulario.addEventListener("submit", function(e){
+      
+        e.preventDefault(); //evitar que se recargue la pagina
+        //para confirmar lo que el usuario envia, addevenetlistnner: esperando a que el usuario haga algo como hacer click, enviar algo, escribir, etc;
+   Buscar_Producto();
+     
+    });
+}
 
     
 });
 
-const marcas_dulces=["de la rosa","Ricolino",];
 
- document.getElementById("formulario").addEventListener("submit", function(e){
-      
-        e.preventDefault(); //evitar que se recargue la pagina
-        //para confirmar lo que el usuario envia, addevenetlistnner: esperando a que el usuario haga algo como hacer click, enviar algo, escribir, etc;
-    Buscar_Producto();
-     
-    });
-
-function asignar_texto(elemento, texto){  //como parametros
-
-//ELEMENTO= ID, TEXTO= PARAMETRO, CONTENIDO QUE QUIERO QUE TENGA
-let elementoHTML=document.querySelector(elemento); //EJEMPLO: NOMBTE DE FUNCION( '#ID,H1,ETC','LO QUE QUIERO QUE MUESTRE')
-elementoHTML.innerHTML=texto;
-}
+const marcas_dulces=["de la rosa","Ricolino","Barkersfield", "LINDTS","M&M'S","Snickers","Ferrero Rocher", "Galletas"];
 
 
+
+
+
+// PARA BUSCAR UN PRODUCTO:
 
 function Buscar_Producto(){
    
 
 let Producto_del_usuario=document.getElementById("busqueda");
 
-for(let i=0; i< marcas_dulces.length; i++){ //menor que, porque es como si sumara 1, es decir, para que no tome una posicion que no existe
-if(Producto_del_usuario.value.toLowerCase().trim()==marcas_dulces[i].toLowerCase().trim()){ //alguno de nuestros elementos);trim para eliminar espacios
-       //alert("tu producto ha sido encontrado!");
+for(let i=0; i< marcas_dulces.length; i++){ //para que no tome una posicion que no existe
+if(Producto_del_usuario.value.toLowerCase().trim()==marcas_dulces[i].toLowerCase().trim()){ 
+       //trim para eliminar espacios
        asignar_texto('#texto',"el producto ha sido encontrado");
   return;
  
@@ -46,41 +55,23 @@ if(Producto_del_usuario.value.toLowerCase().trim()!=marcas_dulces[i].toLowerCase
     asignar_texto('#texto',"el producto no ha sido encontrado");
 
     
-}
-   
+}  
 }
 }
 
 //OFERTAS DE TEMPORADA:
 
-
-
-
-   
-
-
-const OFERTAS={  //objeto, el que guarda las ofertas, 
-    Navidad:[
-        "galletero navideño, costo:$",
-    ]
-}; 
 function FECHAS(){
-    alert("has entrado a la funcion");
 
 let comparar_fecha=new Date(); //fecha de hoy
 let obtener_año= comparar_fecha.getFullYear();  //obtener el año de la fecha actual
 let inicio_oferta=new Date(obtener_año, 10, 15 ); 
 let limite_Oferta=new Date(obtener_año+1,0, 9);
 
-asignar_texto('#texto',"Ofertas disponibles para ti hoy," + comparar_fecha);
-
-
 if(comparar_fecha>=inicio_oferta && comparar_fecha <=limite_Oferta){
- 
 
 let aparecer_ofertas =document.getElementById("temporada_navideña"); //id del div que contiene los productos navideños
         aparecer_ofertas.style.display = "block";  //para que aparezcan las imagenes,
-
 }
 
 }
@@ -111,21 +102,48 @@ let boton = event.target; // envent, =informacion del evento, accion en especifi
 
   // Buscar el precio dentro del mismo contenedor del producto, de su clase,
   let precio = boton.parentElement.querySelector(".Price");
+  let N_Producto=boton.parentElement.querySelector(".diseño_texto");
+ let nombre =N_Producto.textContent;
+
   suma = parseInt (precio.textContent); //convierte a numero:
-  alert(`agregado al carrito, producto con precio de $: ${suma}`);
+  alert(`agregado al carrito, producto con precio de $: ${suma},, con nombre:${nombre}`);
 
 
      //let total_dinero= suma;
       x+=suma;
-localStorage.setItem("x", x); //guarda los nuevos valores, 
+    localStorage.setItem("x", x); //guarda los nuevos valores, el total,
 
+    
+
+      Mostrar_Productos.push({
+        nombre: nombre,
+        suma: suma
+      });
+
+    localStorage.setItem("Mostrar_Productos", JSON.stringify(Mostrar_Productos)); 
+    //etiqueta como un id, para identificar, la variable, stringify para convertir el arreglo a texto, de la variable mostrar productos
     }
 
+ 
     function total(){
+let mostrar_total="";
+let mostrar_Precio="";
+let i=0;
+for (i= 0; i < Mostrar_Productos.length; i++) {
+  mostrar_Precio+=Mostrar_Productos[i].suma;
+  mostrar_total+=Mostrar_Productos[i].nombre;
 
+
+
+  
+}
+  asignar_texto("#texto",`<br> Pureba : ${mostrar_total} ,  precio: ${mostrar_Precio} <br>`);
+
+  alert(`El total de tu compra es :$  ${x}`);
+ // asignar_texto("#texto",'estoy aqui!' );
    
-    alert(`El total de tu compra es :$  ${x}`);
-            }
+
+ }
         
 
 

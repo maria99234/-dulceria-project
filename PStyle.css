@@ -4,6 +4,7 @@
 
 text-align: center;
     background-position: center;
+    margin: auto;
 }
 h1{
     text-align: center;
@@ -11,6 +12,7 @@ h1{
     font-size:  220px;
     margin: 50px;
     font-weight: 600; /*grosor de la letra*/
+    margin: auto;
 }
 
 
@@ -21,6 +23,7 @@ h1{
     color: black;
     font-weight: 35px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: auto;
 }
 .boton{
  
@@ -31,20 +34,42 @@ h1{
     font-weight: 330px;
     margin-top: 150px;
     margin-right: 20px;
-    background-color: blueviolet;
+   
+    
    
 }
 
 
 .icono-busqueda{
     font-size: 60px;
-    background-color: rgb(73, 45, 100);
+    background-color: rgb(234, 227, 240);
     text-align: center; 
+    margin: auto;
 }
 .tamaño_imagen img{
-width: 20%;
+width: 19%;
 height: auto;
-border-radius: 50%;
+
+ 
+ 
 }
+
+#texto{
+    font-size: 40px;
+    text-align: center;
+}
+#formulario{
+    display:flex;
+}
+#buscar_Producto{
+    display: flex;
+    font-size: 40px;
+    
+}
+#texto{
+    text-align: right;
+}
+
+
 
 
