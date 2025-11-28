@@ -1,6 +1,8 @@
  
 let Formulario;
 
+
+
 //Para asignar texto.
 function asignar_texto(elemento, texto){  //como parametros
 
@@ -31,9 +33,25 @@ Formulario.addEventListener("submit", function(e){
 });
 
 
-const marcas_dulces=["de la rosa","Ricolino","Barkersfield", "LINDTS","M&M'S","Snickers","Ferrero Rocher", "Galletas"];
+const marcas_dulces=["delarosa","ricolino","Barkersfield", "LINDTS","M&M'S","Snickers","Ferrero Rocher", "Galletas"];
 
+const marcas_dulces_obj={
+  ricolino:[
+    {
+      nombre:"Panditas:",
+      imagen:"https://i5.walmartimages.com.mx/gr/images/product-images/img_large/00075752802634L.jpg"
 
+    },
+  ],
+  delarosa:[
+  {
+    nombre: "Mazapan",
+    imagen: "https://www.mexicodesconocido.com.mx/wp-content/uploads/2022/02/mazapan.jpeg"
+          
+  },
+ ]
+
+}
 
 
 
@@ -43,20 +61,33 @@ function Buscar_Producto(){
    
 
 let Producto_del_usuario=document.getElementById("busqueda");
+let producto_especifico= Producto_del_usuario.value.toLowerCase().trim().replaceAll(" ","")
 
 for(let i=0; i< marcas_dulces.length; i++){ //para que no tome una posicion que no existe
-if(Producto_del_usuario.value.toLowerCase().trim()==marcas_dulces[i].toLowerCase().trim()){ 
+if(producto_especifico==marcas_dulces[i].toLowerCase().trim().replaceAll(" ","")){ 
        //trim para eliminar espacios
-       asignar_texto('#texto',"el producto ha sido encontrado");
-  return;
+       //asignar_texto('#texto',"el producto ha sido encontrado");
+       
+       //for(producto_especifico in marcas_dulces_obj){ //accede a todas las marcas, itera, si fuera uno, si accede a cada propiedad del objeto
+          for(j=0; j<marcas_dulces_obj[producto_especifico].length; j++){
+asignar_texto("#texto", `<p>${marcas_dulces_obj[producto_especifico][j].nombre}</p>, <img  class="imagen_Busqueda" src="${marcas_dulces_obj[producto_especifico][j].imagen}" alt="${marcas_dulces_obj[producto_especifico][j].nombre}">`) ;
+
+        }
+        
+       
+       return;
+   
+  //k,ey, nombre de la propiedad del objeto: Ricolino.... diferentes posiciones
+ 
+}
+   
  
 }
 if(Producto_del_usuario.value.toLowerCase().trim()!=marcas_dulces[i].toLowerCase().trim()){
     asignar_texto('#texto',"el producto no ha sido encontrado");
 
     
-}  
-}
+} 
 }
 
 //OFERTAS DE TEMPORADA:
@@ -81,7 +112,8 @@ function boton(){
     let select_images=document.querySelectorAll("img"); //Seleccionar todas las imagenes,
     select_images.forEach(img => {
        let Boton= document.createElement("button"); //etiqueta que quiero crear en el html
-     Boton.textContent="Agregar al Carrito"; 
+     Boton.textContent="Agregar al Carrito";
+        Boton.classList.add("boton-carrito");  // ← Clase para el diseño 
      Boton.addEventListener("click", Agregar_al_Carrito); //al ser presionado pasa la iformacion
    img.insertAdjacentElement("afterend", Boton); //lugar en el que se va a mostrar el boton
 
@@ -131,22 +163,38 @@ let mostrar_Precio="";
 let i=0;
 for (i= 0; i < Mostrar_Productos.length; i++) {
   mostrar_Precio+=Mostrar_Productos[i].suma;
-  mostrar_total+=Mostrar_Productos[i].nombre;
+  mostrar_total+=`<p>${Mostrar_Productos[i].nombre} — $${Mostrar_Productos[i].suma}</p>`;
 
 
 
   
 }
-  asignar_texto("#texto",`<br> Pureba : ${mostrar_total} ,  precio: ${mostrar_Precio} <br>`);
 
-  alert(`El total de tu compra es :$  ${x}`);
- // asignar_texto("#texto",'estoy aqui!' );
-   
+asignar_texto("#texto",`<br>  ${mostrar_total} ,`);
+  alert(`El total de tu compra es :$  ${x}`); 
+
+ }
+
+ function borrar_Carrito(){
+
+  localStorage.setItem("Mostrar_Productos", JSON.stringify([]));
+  Mostrar_Productos = [];
+localStorage.setItem("x", 0);
+x = 0;
+
+
+
+
 
  }
         
 
-
+ document.addEventListener("DOMContentLoaded", () => {
+  if (document.body.id === "carrito") {
+    boton();
+    total();
+  }
+});
        
     
 
